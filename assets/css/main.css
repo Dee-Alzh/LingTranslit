@@ -1,0 +1,258 @@
+/* =====================================
+   REMOVE STELLAR WIDTH RESTRICTIONS
+===================================== */
+
+#main {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+
+.lang-switcher button {
+  margin: 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* =====================================
+   GREEN BACKGROUND
+===================================== */
+
+body {
+    background: url("../../images/green-bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Fallback gradient */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #1e3c2f, #2e6f4e);
+    z-index: -1;
+    opacity: 0.9;
+}
+
+
+/* DARK MODE STYLES */
+body.dark-mode {
+    background: #121212; /* dark background */
+    color: #ffffff; /* default font color */
+}
+
+body.dark-mode .custom-header {
+    color: #ffffff; /* header text white */
+}
+
+body.dark-mode .translator-card {
+    background: #1e1e1e; /* dark card */
+    box-shadow: 0 35px 80px rgba(0,0,0,0.5);
+    color: #ffffff; /* ensure text inside card is white */
+}
+
+body.dark-mode .translator-card h2,
+body.dark-mode .translator-card .subtitle,
+body.dark-mode .translator-card label {
+    color: #ffffff; /* headings, subtitles, labels white */
+}
+
+body.dark-mode textarea {
+    background: #2c2c2c;
+    color: #ffffff; /* text typed by user becomes white */
+    border: 1px solid #444;
+}
+
+body.dark-mode .translate-btn {
+    background: #3b7a57;
+    color: #ffffff; /* button text white */
+}
+
+body.dark-mode .translate-btn:hover {
+    background: #2e5a3e;
+}
+
+body.dark-mode .site-footer {
+    color: #ffffff; /* footer text white */
+}
+
+/* Optional: ensure all buttons inside lang-switcher are visible */
+body.dark-mode .lang-switcher button {
+    background: #2c2c2c;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+body.dark-mode #theme-toggle {
+    background: #2c2c2c;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+
+/* DARK MODE TOGGLE BUTTON STYLING */
+#theme-toggle {
+    position: absolute; /* instead of fixed */
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    background: #2e6f4e; /* greenish color */
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease; /* smooth color transition */
+    z-index: 100; /* above other content in wrapper */
+}
+
+/* Hover effect: only color change */
+#theme-toggle:hover {
+    background: #24563c;
+}
+
+/* Dark mode button style */
+body.dark-mode #theme-toggle {
+    background: #444;
+    color: #fff;
+}
+
+body.dark-mode #theme-toggle:hover {
+    background: #666;
+}
+
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+.custom-header {
+    text-align: center;
+    padding: 5em 1em 3em 1em;
+    color: white;
+}
+
+.header-logo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255,255,255,0.8);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    margin-bottom: 1.5em;
+}
+
+.site-title {
+    font-size: 2.6em;
+    font-weight: 600;
+    margin-bottom: 0.3em;
+}
+
+.site-subtitle {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+
+
+/* =====================================
+   TRANSLATOR SECTION
+===================================== */
+
+#translator-section {
+    display: flex;
+    justify-content: center;
+    padding: 3em 1em 6em 1em;
+}
+
+.translator-card {
+    background: white;
+    width: 1100px;
+    max-width: 95%;
+    padding: 4.5em;
+    border-radius: 18px;
+    box-shadow: 0 35px 80px rgba(0,0,0,0.25);
+}
+
+/* Titles */
+
+.translator-card h2 {
+    color: #1e3c2f;
+    margin-bottom: 0.4em;
+}
+
+.subtitle {
+    color: #6c757d;
+    margin-bottom: 2em;
+}
+
+/* Fields */
+
+.field {
+    margin-bottom: 2em;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.6em;
+    font-weight: 600;
+    color: #1e3c2f;
+}
+
+textarea {
+    width: 100%;
+    min-height: 130px;
+    padding: 1em;
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
+    font-size: 1em;
+    resize: none;
+    transition: 0.3s ease;
+}
+
+textarea:focus {
+    border-color: #2e6f4e;
+    box-shadow: 0 0 0 3px rgba(46,111,78,0.15);
+    outline: none;
+}
+
+/* Button */
+
+.translate-btn {
+    width: 100%;
+    padding: 1em;
+    border-radius: 10px;
+    border: none;
+    background: #2e6f4e;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-bottom: 2em;
+}
+
+.translate-btn:hover {
+    background: #24563c;
+    transform: translateY(-2px);
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.site-footer {
+    text-align: left;
+    font-size: 0.85em;
+    opacity: 0.8;
+    color: white;
+    padding-bottom: 2em;
+}
+
+.site-footer {
+    position: relative;
+    left: 20px;  /* moves it 20px to the right */
+    /* or */
+    right: 20px; /* moves it 20px to the left */
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>LingTranslit</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body>
+
+ <div class="lang-switcher">
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('kz')">KZ</button>
+    <button onclick="setLang('ru')">RU</button>
+  </div>
+
+  <button id="theme-toggle">🌙 Dark mode</button>
+
+<div id="wrapper">
+
+    <!-- HEADER -->
+    <header class="custom-header">
+        <img src="images/t.png" alt="Logo" class="header-logo">
+        <h1 class="site-title" id="siteTitle">LingTranslit</h1>
+<p class="site-subtitle" id="siteSubtitle"></p>
+
+    </header>
+
+    <!-- MAIN -->
+    <main id="main">
+
+        <section id="translator-section">
+            <div class="translator-card">
+
+               <h2 id="mainTitle"></h2>
+<p class="subtitle" id="mainSubtitle"></p>
+
+
+                <div class="field">
+                   <label for="inputText" id="labelInput"></label>
+
+<textarea id="inputText" placeholder=""></textarea>
+
+                </div>
+
+                <button id="convertBtn" class="translate-btn"></button>
+
+
+                <div class="field">
+                  <label for="outputText" id="labelOutput"></label>
+
+                    <textarea id="outputText" readonly></textarea>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+       <p id="footerText"></p>
+<p id="feedbackText"></p>
+  <iframe 
+    src="https://forms.gle/hVmNWU2p5QytBFhm6" 
+    width="100%" 
+    height="600" 
+    frameborder="0" 
+    marginheight="0" 
+    marginwidth="0">
+    Loading…
+  </iframe>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

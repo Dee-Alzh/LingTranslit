@@ -1,150 +1,144 @@
 // ============================
-// TRANSLATIONS
+// Wait for DOM to load
 // ============================
-const translations = {
-  en: {
-    siteSubtitle: "Converts Kazakh Cyrillic text into Latin script (Johanson-based)",
-    mainTitle: "Turkological Transcription",
-    mainSubtitle: "Johanson-based Latin transcription",
-    labelInput: "Kazakh (Cyrillic)",
-    placeholder: "Example: Қазақстан Республикасы",
-    convertBtn: "Transliterate",
-    labelOutput: "Kazakh (Latin)",
-    footerText: "© 2026 Dilnaz Alzhanova. All rights reserved.",
-    feedbackText: "Send your feedback here:"
-  },
-  kz: {
-    siteSubtitle: "Қазақ тіліндегі кирилл жазуын латын графикасына көшіреді (Йохансон жүйесі)",
-    mainTitle: "Түркологиялық транскрипция",
-    mainSubtitle: "Йохансон негізіндегі латын транскрипциясы",
-    labelInput: "Қазақша (кирилл)",
-    placeholder: "Мысалы: Қазақстан Республикасы",
-    convertBtn: "Транслитерациялау",
-    labelOutput: "Қазақша (латын)",
-    footerText: "© 2026 Дильназ Алжанова. Барлық құқықтар қорғалған.",
-    feedbackText: "Пікіріңізді осы жерге қалдырыңыз:"
-  },
-  ru: {
-    siteSubtitle: "Преобразует казахский текст с кириллицы на латиницу (система Йохансона)",
-    mainTitle: "Тюркологическая транскрипция",
-    mainSubtitle: "Латинская транскрипция по системе Йохансона",
-    labelInput: "Казахский (кириллица)",
-    placeholder: "Например: Қазақстан Республикасы",
-    convertBtn: "Транслитерировать",
-    labelOutput: "Казахский (латиница)",
-    footerText: "© 2026 Дильназ Альжанова. Все права защищены.",
-    feedbackText: "Оставьте свой отзыв здесь:"
+document.addEventListener("DOMContentLoaded", () => {
+
+  // ============================
+  // TRANSLATIONS
+  // ============================
+  const translations = {
+    en: {
+      siteSubtitle: "Converts Kazakh Cyrillic text into Latin script (Johanson-based)",
+      mainTitle: "Turkological Transcription",
+      mainSubtitle: "Johanson-based Latin transcription",
+      labelInput: "Kazakh (Cyrillic)",
+      placeholder: "Example: Қазақстан Республикасы",
+      convertBtn: "Transliterate",
+      labelOutput: "Kazakh (Latin)",
+      footerText: "© 2026 Dilnaz Alzhanova. All rights reserved.",
+      feedbackText: "Send your feedback here:"
+    },
+    kz: {
+      siteSubtitle: "Қазақ тіліндегі кирилл жазуын латын графикасына көшіреді (Йохансон жүйесі)",
+      mainTitle: "Түркологиялық транскрипция",
+      mainSubtitle: "Йохансон негізіндегі латын транскрипциясы",
+      labelInput: "Қазақша (кирилл)",
+      placeholder: "Мысалы: Қазақстан Республикасы",
+      convertBtn: "Транслитерациялау",
+      labelOutput: "Қазақша (латын)",
+      footerText: "© 2026 Дильназ Алжанова. Барлық құқықтар қорғалған.",
+      feedbackText: "Пікіріңізді осы жерге қалдырыңыз:"
+    },
+    ru: {
+      siteSubtitle: "Преобразует казахский текст с кириллицы на латиницу (система Йохансона)",
+      mainTitle: "Тюркологическая транскрипция",
+      mainSubtitle: "Латинская транскрипция по системе Йохансона",
+      labelInput: "Казахский (кириллица)",
+      placeholder: "Например: Қазақстан Республикасы",
+      convertBtn: "Транслитерировать",
+      labelOutput: "Казахский (латиница)",
+      footerText: "© 2026 Дильназ Альжанова. Все права защищены.",
+      feedbackText: "Оставьте свой отзыв здесь:"
+    }
+  };
+
+  function setLang(lang) {
+    document.getElementById("siteSubtitle").textContent = translations[lang].siteSubtitle;
+    document.getElementById("mainTitle").textContent = translations[lang].mainTitle;
+    document.getElementById("mainSubtitle").textContent = translations[lang].mainSubtitle;
+    document.getElementById("labelInput").textContent = translations[lang].labelInput;
+    document.getElementById("inputText").placeholder = translations[lang].placeholder;
+    document.getElementById("convertBtn").textContent = translations[lang].convertBtn;
+    document.getElementById("labelOutput").textContent = translations[lang].labelOutput;
+    document.getElementById("footerText").textContent = translations[lang].footerText;
+    document.getElementById("feedbackText").textContent = translations[lang].feedbackText;
   }
-};
 
-function setLang(lang) {
-  document.getElementById("siteSubtitle").textContent = translations[lang].siteSubtitle;
-  document.getElementById("mainTitle").textContent = translations[lang].mainTitle;
-  document.getElementById("mainSubtitle").textContent = translations[lang].mainSubtitle;
-  document.getElementById("labelInput").textContent = translations[lang].labelInput;
-  document.getElementById("inputText").placeholder = translations[lang].placeholder;
-  document.getElementById("convertBtn").textContent = translations[lang].convertBtn;
-  document.getElementById("labelOutput").textContent = translations[lang].labelOutput;
-  document.getElementById("footerText").textContent = translations[lang].footerText;
-  document.getElementById("feedbackText").textContent = translations[lang].feedbackText;
-}
+  // Set default language
+  setLang("en");
 
-// Set default language
-setLang("en");
+  // ============================
+  // TRANSLITERATION MAP
+  // ============================
+  const map = {
+    "А":"A","а":"a","Ә":"Ä","ә":"ä","Б":"B","б":"b","В":"V","в":"v",
+    "Г":"G","г":"g","Ғ":"Ğ","ғ":"γ","Д":"D","д":"d","Е":"E","е":"e",
+    "Ж":"Ž","ж":"ž","З":"Z","з":"z","И":"Ị","и":"ị","Й":"Y","й":"y",
+    "К":"K","к":"k","Қ":"Q","қ":"q","Л":"L","л":"l","М":"M","м":"m",
+    "Н":"N","н":"n","Ң":"Ŋ","ң":"ŋ","О":"O","о":"o","Ө":"Ö","ө":"ö",
+    "П":"P","п":"p","Р":"R","р":"r","С":"S","с":"s","Т":"T","т":"t",
+    "У":"U","у":"u","Ұ":"U","ұ":"u","Ү":"Ü","ү":"ü","Ф":"F","ф":"f",
+    "Х":"Χ","х":"χ","Һ":"H","һ":"h","Ц":"C","ц":"c","Ч":"Č","ч":"č",
+    "Ш":"Š","ш":"š","Щ":"Sh","щ":"sh","Ы":"Ï","ы":"ï","І":"I","і":"i",
+    "Э":"E","э":"e","Ю":"Yu","ю":"yu","Я":"Ya","я":"ya","Ь":"'","ь":"'"
+  };
 
-// ============================
-// TRANSLITERATION MAP
-// ============================
-const map = {
-  "А":"A","а":"a","Ә":"Ä","ә":"ä","Б":"B","б":"b","В":"V","в":"v",
-  "Г":"G","г":"g","Ғ":"Ğ","ғ":"γ","Д":"D","д":"d","Е":"E","е":"e",
-  "Ж":"Ž","ж":"ž","З":"Z","з":"z","И":"Ị","и":"ị","Й":"Y","й":"y",
-  "К":"K","к":"k","Қ":"Q","қ":"q","Л":"L","л":"l","М":"M","м":"m",
-  "Н":"N","н":"n","Ң":"Ŋ","ң":"ŋ","О":"O","о":"o","Ө":"Ö","ө":"ö",
-  "П":"P","п":"p","Р":"R","р":"r","С":"S","с":"s","Т":"T","т":"t",
-  "У":"U","у":"u","Ұ":"U","ұ":"u","Ү":"Ü","ү":"ü","Ф":"F","ф":"f",
-  "Х":"Χ","х":"χ","Һ":"H","һ":"h","Ц":"C","ц":"c","Ч":"Č","ч":"č",
-  "Ш":"Š","ш":"š","Щ":"Sh","щ":"sh","Ы":"Ï","ы":"ï","І":"I","і":"i",
-  "Э":"E","э":"e","Ю":"Yu","ю":"yu","Я":"Ya","я":"ya","Ь":"'","ь":"'"
-};
+  function transliterate(text) {
+    return text.split("").map(c => map[c] ?? c).join("");
+  }
 
-function transliterate(text) {
-  return text.split("").map(c => map[c] ?? c).join("");
-}
+  // ============================
+  // DARK MODE TOGGLE
+  // ============================
+  const themeToggleBtn = document.getElementById("theme-toggle");
+  themeToggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    themeToggleBtn.textContent = document.body.classList.contains("dark-mode")
+        ? "☀️ Light mode"
+        : "🌙 Dark mode";
+  });
 
-// ============================
-// DARK MODE TOGGLE
-// ============================
-const themeToggleBtn = document.getElementById("theme-toggle");
-themeToggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  themeToggleBtn.textContent = document.body.classList.contains("dark-mode")
-      ? "☀️ Light mode"
-      : "🌙 Dark mode";
-});
+  // ============================
+  // GLOBAL WORD COUNTER
+  // ============================
+  const inputText = document.getElementById("inputText");
+  const wordCountEl = document.getElementById("wordCount");
+  const webAppURL = "https://script.google.com/macros/s/AKfycby75Ow5nN0ocO3kW2F96RWVkX183Vu8Chg-P61L0zTjvasEH45EOz7nFqihVoq4Tof-/exec";
 
-// ============================
-// WORD COUNTER
-// ============================
-const inputText = document.getElementById("inputText");
-const wordCountEl = document.getElementById("wordCount"); // footer element
-
-function countWords(text) {
-  const trimmed = text.trim();
-  return trimmed === "" ? 0 : trimmed.split(/\s+/).length;
-}
-
-// ---------------------------
-// Global word counter
-// ---------------------------
-
-// ---------------------------
-// Global word counter
-// ---------------------------
-
-const wordCountEl = document.getElementById("wordCount"); // footer element
-const webAppURL = "https://script.google.com/macros/s/AKfycby75Ow5nN0ocO3kW2F96RWVkX183Vu8Chg-P61L0zTjvasEH45EOz7nFqihVoq4Tof-/exec";
-
-// Count words in a string
-function countWords(text) {
+  function countWords(text) {
     const trimmed = text.trim();
     return trimmed === "" ? 0 : trimmed.split(/\s+/).length;
-}
+  }
 
-// Fetch current total words on page load
-async function fetchTotal() {
+  // Fetch total words on page load
+  async function fetchTotal() {
     try {
-        const response = await fetch(webAppURL);
-        const data = await response.json();
-        wordCountEl.textContent = `Transliterated word count: ${data.total}`;
+      const response = await fetch(webAppURL);
+      const data = await response.json();
+      wordCountEl.textContent = `Transliterated word count: ${data.total}`;
     } catch (err) {
-        console.error("Error fetching total:", err);
+      console.error("Error fetching total:", err);
+      wordCountEl.textContent = `Transliterated word count: -`;
     }
-}
+  }
 
-// Add new words to global total
-async function addToGlobalCount(words) {
+  // Add words to global total
+  async function addToGlobalCount(words) {
     try {
-        const response = await fetch(`${webAppURL}?count=${words}`, { method: "POST" });
-        const data = await response.json();
-        wordCountEl.textContent = `Transliterated word count: ${data.total}`;
+      const response = await fetch(`${webAppURL}?count=${words}`, { method: "POST" });
+      const data = await response.json();
+      wordCountEl.textContent = `Transliterated word count: ${data.total}`;
     } catch (err) {
-        console.error("Error updating total:", err);
+      console.error("Error updating total:", err);
     }
-}
+  }
 
-// Update total on page load
-fetchTotal();
+  // Initial fetch
+  fetchTotal();
 
-// When transliterate button clicked
-document.getElementById("convertBtn").addEventListener("click", () => {
-    const input = document.getElementById("inputText").value;
+  // ============================
+  // TRANSLITERATE BUTTON CLICK
+  // ============================
+  document.getElementById("convertBtn").addEventListener("click", () => {
+    const input = inputText.value;
+    const words = countWords(input);
 
-    // Transliterate (use your existing transliterate function)
+    // Transliterate text
     document.getElementById("outputText").value = transliterate(input);
 
-    // Count words and send to Sheet
-    const words = countWords(input);
+    // Send words to global counter
     if(words > 0) addToGlobalCount(words);
+  });
+
 });
 

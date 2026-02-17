@@ -35,12 +35,12 @@ body::before {
 }
 
 //COUNT
- #main #translator-section .translator-card .word-counter {
-    color: #ffffff !important;
-    text-align: right;
-    font-weight: 600;
+ .word-counter {
     font-size: 0.95em;
-    margin-top: 1em;
+    font-weight: 600;
+    color: #ffffff;           /* always white */
+    text-align: right;        /* aligns right in footer */
+    margin: 0 1em 0.5em 0;    /* spacing from edges */
 }
 
 /* DARK MODE STYLES */

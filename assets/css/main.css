@@ -36,14 +36,22 @@ body::before {
 
 //COUNT
 .word-counter {
-    text-align: right;
+    text-align: right;        /* aligns text to the right */
     font-size: 0.95em;
-    color: #1e3c2f;
+    color: #1e3c2f;           /* normal mode color */
     margin: 0.5em 1em 2em 1em;
+    font-weight: 600;
 }
 
+/* Move it further to the right and white in dark mode */
 body.dark-mode .word-counter {
-    color: #ffffff;
+    color: #ffffff;           /* white in dark mode */
+}
+
+body .word-counter {
+    /* optional: push it more to the right */
+    text-align: right;
+    margin-right: 2em;        /* increases distance from left edge */
 }
 
 

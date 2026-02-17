@@ -99,7 +99,7 @@ const wordCountEl = document.getElementById("wordCount");
 function updateWordCount() {
     const text = inputText.value.trim();
     const words = text === "" ? 0 : text.split(/\s+/).length;
-    wordCountEl.textContent = `Word count: ${words}`;
+    wordCountEl.textContent = `Transliterated word count: ${words}`;
 }
 
 inputText.addEventListener("input", updateWordCount);

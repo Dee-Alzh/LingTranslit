@@ -35,20 +35,12 @@ body::before {
 }
 
 //COUNT
-
-
 .word-counter {
     font-size: 0.95em;
     font-weight: 600;
-    color: #ffffff;           /* white text */
+    color: #ffffff;       /* always white */
     text-align: right;
-    background-color: #2e6f4e; /* visible background behind text */
-    padding: 0.3em 0.5em;
-    border-radius: 5px;
-    width: 1100px;
-    max-width: 95%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 1em 0 0 0;    /* top spacing, no bottom needed inside card */
 }
 
 

@@ -240,10 +240,11 @@ textarea:focus {
    FOOTER
 ===================================== */
 .site-footer {
-    text-align: left;      /* align all text left */
+    text-align: left;
     font-size: 0.85em;
     opacity: 0.8;
     color: white;
     padding: 2em;
+    position: relative; /* optional */
 }
 

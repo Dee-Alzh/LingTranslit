@@ -36,11 +36,11 @@ body::before {
 
 //COUNT
  .word-counter {
-    font-size: 0.95em;
-    font-weight: 600;
     color: #ffffff;           /* always white */
-    text-align: right;        /* aligns right in footer */
-    margin: 0 1em 0.5em 0;    /* spacing from edges */
+    text-align: right;        /* right side of footer */
+    font-weight: 600;
+    font-size: 0.95em;
+    margin-bottom: 0.5em;
 }
 
 /* DARK MODE STYLES */

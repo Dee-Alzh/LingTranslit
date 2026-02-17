@@ -93,21 +93,3 @@ themeToggleBtn.addEventListener("click", () => {
 });
 
 
-const inputText = document.getElementById("inputText");
-const wordCount = document.getElementById("wordCount");
-const charCount = document.getElementById("charCount");
-
-inputText.addEventListener("input", () => {
-  const text = inputText.value;
-
-  // Words
-  const words = text.trim().split(/\s+/).filter(w => w.length > 0);
-  wordCount.textContent = "Words: " + (text.trim() ? words.length : 0);
-
-  // Characters
-  charCount.textContent = "Characters: " + text.length;
-
-  // Characters without spaces
-  charNoSpaceCount.textContent =
-    "No spaces: " + text.replace(/\s/g, "").length;
-});

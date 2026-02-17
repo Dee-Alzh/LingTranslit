@@ -93,3 +93,21 @@ themeToggleBtn.addEventListener("click", () => {
 });
 
 
+const inputText = document.getElementById("inputText");
+const wordCountEl = document.getElementById("wordCount");
+
+// Function to count words
+function updateWordCount() {
+    const text = inputText.value.trim();
+    // split by whitespace, filter out empty strings
+    const words = text === "" ? 0 : text.split(/\s+/).length;
+    wordCountEl.textContent = `Word count: ${words}`;
+}
+
+// Update on input
+inputText.addEventListener("input", () => {
+    updateWordCount();
+});
+
+
+

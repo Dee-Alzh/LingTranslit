@@ -35,20 +35,13 @@ body::before {
 }
 
 //COUNT
-.word-counter {
-    font-size: 0.95em;
+ #main #translator-section .translator-card .word-counter {
+    color: #ffffff !important;
+    text-align: right;
     font-weight: 600;
-      color: #ffffff !important;           /* white text */
-    text-align: right;         /* move it to the right */
-    padding: 0.3em 0.5em;
-    border-radius: 5px;
-    background-color: #2e6f4e; /* dark green background */
-    width: 1100px;
-    max-width: 95%;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 0.95em;
+    margin-top: 1em;
 }
-
 
 /* DARK MODE STYLES */
 body.dark-mode {

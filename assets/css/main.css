@@ -38,7 +38,7 @@ body::before {
 .word-counter {
     font-size: 0.95em;
     font-weight: 600;
-    color: #ffffff;           /* white text */
+      color: #ffffff !important;           /* white text */
     text-align: right;         /* move it to the right */
     padding: 0.3em 0.5em;
     border-radius: 5px;

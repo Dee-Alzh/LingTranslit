@@ -35,6 +35,12 @@ body::before {
 }
 
 //COUNT
+#wordCount {
+    font-weight: 600;
+    color: white;        /* always white */
+    text-align: left;    /* move text to left */
+    margin: 0;           /* remove any auto margins */
+}
 
 
 

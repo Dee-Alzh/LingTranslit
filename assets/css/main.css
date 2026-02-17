@@ -1,7 +1,6 @@
 /* =====================================
    REMOVE STELLAR WIDTH RESTRICTIONS
 ===================================== */
-
 #main {
     max-width: none !important;
     width: 100% !important;
@@ -17,7 +16,6 @@
 /* =====================================
    GREEN BACKGROUND
 ===================================== */
-
 body {
     background: url("../../images/green-bg.jpg") no-repeat center center fixed;
     background-size: cover;
@@ -36,7 +34,6 @@ body::before {
 /* ============================
    WORD COUNTER
 ============================ */
-
 #wordCount {
     font-weight: 600;
     color: white;       /* always white */
@@ -48,18 +45,17 @@ body::before {
 /* =====================================
    DARK MODE STYLES
 ===================================== */
-
 body.dark-mode {
-    background: #121212;
-    color: #ffffff;
+    background: #121212; /* dark background */
+    color: #ffffff;      /* default font color */
 }
 
 body.dark-mode .custom-header {
-    color: #ffffff;
+    color: #ffffff; /* header text white */
 }
 
 body.dark-mode .translator-card {
-    background: #1e1e1e;
+    background: #1e1e1e; /* dark card */
     box-shadow: 0 35px 80px rgba(0,0,0,0.5);
     color: #ffffff;
 }
@@ -104,9 +100,8 @@ body.dark-mode #theme-toggle {
 /* =====================================
    DARK MODE TOGGLE BUTTON
 ===================================== */
-
 #theme-toggle {
-    position: absolute;
+    position: absolute; 
     top: 20px;
     right: 20px;
     padding: 10px 20px;
@@ -137,7 +132,6 @@ body.dark-mode #theme-toggle:hover {
 /* =====================================
    HEADER
 ===================================== */
-
 .custom-header {
     text-align: center;
     padding: 5em 1em 3em 1em;
@@ -168,7 +162,6 @@ body.dark-mode #theme-toggle:hover {
 /* =====================================
    TRANSLATOR SECTION
 ===================================== */
-
 #translator-section {
     display: flex;
     justify-content: center;
@@ -246,7 +239,6 @@ textarea:focus {
 /* =====================================
    FOOTER
 ===================================== */
-
 .site-footer {
     text-align: left;      /* align all text left */
     font-size: 0.85em;
@@ -255,10 +247,11 @@ textarea:focus {
     padding: 2em;
 }
 
+/* Word counter specifically */
 #wordCount {
     font-weight: 600;
     color: white;
     text-align: left;
     margin: 0;
-    padding-left: 5px; /* optional small indent */
+    padding-left: 5px;
 }

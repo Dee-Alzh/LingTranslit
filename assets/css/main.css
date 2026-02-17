@@ -35,10 +35,11 @@ body::before {
 }
 
 //COUNT
+
 .word-counter {
     text-align: right;        /* aligns text to the right */
     font-size: 0.95em;
-    color: #1e3c2f;           /* normal mode color */
+    color: #ffffff;           /* normal mode color */
     margin: 0.5em 1em 2em 1em;
     font-weight: 600;
 }

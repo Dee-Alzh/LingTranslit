@@ -1,4 +1,14 @@
 // ============================
+// GLOBAL VARIABLES
+// ============================
+const inputText = document.getElementById("inputText");
+const outputText = document.getElementById("outputText");
+const wordCountEl = document.getElementById("wordCount");
+const webAppURL = "https://script.google.com/macros/s/AKfycby75Ow5nN0ocO3kW2F96RWVkX183Vu8Chg-P61L0zTjvasEH45EOz7nFqihVoq4Tof-/exec";
+const convertBtn = document.getElementById("convertBtn");
+const themeToggleBtn = document.getElementById("theme-toggle");
+
+// ============================
 // TRANSLATIONS
 // ============================
 const translations = {
@@ -41,26 +51,20 @@ const translations = {
 // LANGUAGE SWITCHING
 // ============================
 function setLang(lang) {
-  document.getElementById("siteSubtitle").textContent = translations[lang].siteSubtitle;
-  document.getElementById("mainTitle").textContent = translations[lang].mainTitle;
-  document.getElementById("mainSubtitle").textContent = translations[lang].mainSubtitle;
-  document.getElementById("labelInput").textContent = translations[lang].labelInput;
-  document.getElementById("inputText").placeholder = translations[lang].placeholder;
-  document.getElementById("convertBtn").textContent = translations[lang].convertBtn;
-  document.getElementById("labelOutput").textContent = translations[lang].labelOutput;
-  document.getElementById("footerText").textContent = translations[lang].footerText;
-  document.getElementById("feedbackText").textContent = translations[lang].feedbackText;
+  const t = translations[lang];
+  document.getElementById("siteSubtitle").textContent = t.siteSubtitle;
+  document.getElementById("mainTitle").textContent = t.mainTitle;
+  document.getElementById("mainSubtitle").textContent = t.mainSubtitle;
+  document.getElementById("labelInput").textContent = t.labelInput;
+  inputText.placeholder = t.placeholder;
+  convertBtn.textContent = t.convertBtn;
+  document.getElementById("labelOutput").textContent = t.labelOutput;
+  document.getElementById("footerText").textContent = t.footerText;
+  document.getElementById("feedbackText").textContent = t.feedbackText;
 }
 
-// default language
+// Set default language
 setLang("en");
-
-// ============================
-// GLOBAL VARIABLES
-// ============================
-const inputText = document.getElementById("inputText");
-const wordCountEl = document.getElementById("wordCount");
-const webAppURL = "https://script.google.com/macros/s/AKfycby75Ow5nN0ocO3kW2F96RWVkX183Vu8Chg-P61L0zTjvasEH45EOz7nFqihVoq4Tof-/exec";
 
 // ============================
 // TRANSLITERATION MAP
@@ -83,14 +87,14 @@ function transliterate(text) {
 }
 
 // ============================
-// COUNT WORDS
+// WORD COUNT
 // ============================
 function countWords(text) {
   const trimmed = text.trim();
   return trimmed === "" ? 0 : trimmed.split(/\s+/).length;
 }
 
-// Fetch total words from Google Sheet
+// Fetch global word count from Google Sheet
 async function fetchTotal() {
   try {
     const response = await fetch(webAppURL);
@@ -98,10 +102,11 @@ async function fetchTotal() {
     wordCountEl.textContent = `Transliterated word count: ${data.total}`;
   } catch (err) {
     console.error("Error fetching total:", err);
+    wordCountEl.textContent = "Unable to fetch count";
   }
 }
 
-// Send new words to Google Sheet
+// Add new words to global counter
 async function addToGlobalCount(words) {
   try {
     const response = await fetch(`${webAppURL}?count=${words}`, { method: "POST" });
@@ -109,31 +114,32 @@ async function addToGlobalCount(words) {
     wordCountEl.textContent = `Transliterated word count: ${data.total}`;
   } catch (err) {
     console.error("Error updating total:", err);
+    wordCountEl.textContent = "Error updating count";
   }
 }
 
-// Initial fetch
-fetchTotal();
+// ============================
+// BUTTON EVENTS
+// ============================
 
-// Transliterate button click
-document.getElementById("convertBtn").addEventListener("click", () => {
+// Transliterate button
+convertBtn.addEventListener("click", () => {
   const input = inputText.value;
+  outputText.value = transliterate(input);
 
-  // Transliterate
-  document.getElementById("outputText").value = transliterate(input);
-
-  // Count words and update global counter
   const words = countWords(input);
   if(words > 0) addToGlobalCount(words);
 });
 
-// ============================
-// DARK MODE TOGGLE
-// ============================
-const themeToggleBtn = document.getElementById("theme-toggle");
+// Dark mode toggle
 themeToggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
   themeToggleBtn.textContent = document.body.classList.contains("dark-mode")
-      ? "☀️ Light mode"
-      : "🌙 Dark mode";
+    ? "☀️ Light mode"
+    : "🌙 Dark mode";
 });
+
+// ============================
+// INITIALIZE
+// ============================
+fetchTotal();

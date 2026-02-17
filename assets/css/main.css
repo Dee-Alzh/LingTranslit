@@ -38,17 +38,13 @@ body::before {
 .word-counter {
     font-size: 0.95em;
     font-weight: 600;
-    color: #1e3c2f;      /* normal mode: dark green text */
-    margin: 0.5em 0 2em 0; /* top/bottom spacing */
-    text-align: right;     /* right-align text */
-    width: 1100px;         /* match the translator card width */
-    max-width: 95%;        /* responsive for smaller screens */
-    margin-left: auto;      /* push to the right edge of card */
+    color: #ffffff;       /* always white */
+    margin: 0.5em 0 2em 0;
+    text-align: right;
+    width: 1100px;        /* same as translator card */
+    max-width: 95%;
+    margin-left: auto;
     margin-right: auto;
-}
-
-body.dark-mode .word-counter {
-    color: #ffffff;       /* white in dark mode */
 }
 
 

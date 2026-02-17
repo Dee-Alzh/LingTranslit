@@ -37,7 +37,7 @@ body::before {
 //COUNT
  .word-counter {
     color: #ffffff;           /* always white */
-    text-align: right;        /* right side of footer */
+    text-align: left;        /* right side of footer */
     font-weight: 600;
     font-size: 0.95em;
     margin-bottom: 0.5em;

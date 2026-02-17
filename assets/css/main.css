@@ -34,6 +34,17 @@ body::before {
     opacity: 0.9;
 }
 
+//COUNT
+.word-counter {
+    text-align: right;
+    font-size: 0.95em;
+    color: #1e3c2f;
+    margin: 0.5em 1em 2em 1em;
+}
+
+body.dark-mode .word-counter {
+    color: #ffffff;
+}
 
 
 /* DARK MODE STYLES */

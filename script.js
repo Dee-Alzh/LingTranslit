@@ -1,4 +1,4 @@
-
+// ======== TRANSLATIONS ========
 const translations = {
   en: {
     siteSubtitle: "Converts Kazakh Cyrillic text into Latin script (Johanson-based)",
@@ -11,7 +11,6 @@ const translations = {
     footerText: "© 2026 Dilnaz Alzhanova. All rights reserved.",
     feedbackText: "Send your feedback here:"
   },
-
   kz: {
     siteSubtitle: "Қазақ тіліндегі кирилл жазуын латын графикасына көшіреді (Йохансон жүйесі)",
     mainTitle: "Түркологиялық транскрипция",
@@ -23,7 +22,6 @@ const translations = {
     footerText: "© 2026 Дильназ Алжанова. Барлық құқықтар қорғалған.",
     feedbackText: "Пікіріңізді осы жерге қалдырыңыз:"
   },
-
   ru: {
     siteSubtitle: "Преобразует казахский текст с кириллицы на латиницу (система Йохансона)",
     mainTitle: "Тюркологическая транскрипция",
@@ -52,7 +50,7 @@ function setLang(lang) {
 // default language
 setLang("en");
 
-
+// ======== TRANSLITERATION MAP ========
 const map = {
     "А":"A","а":"a","Ә":"Ä","ә":"ä","Б":"B","б":"b","В":"V","в":"v",
     "Г":"G","г":"g","Ғ":"Ğ","ғ":"γ","Д":"D","д":"d","Е":"E","е":"e",
@@ -70,21 +68,10 @@ function transliterate(text) {
     return text.split("").map(c => map[c] ?? c).join("");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("convertBtn").addEventListener("click", () => {
-        const input = document.getElementById("inputText").value;
-        document.getElementById("outputText").value = transliterate(input);
-    });
-});
-
-
-
-// Dark mode toggle
+// ======== DARK MODE TOGGLE ========
 const themeToggleBtn = document.getElementById("theme-toggle");
-
 themeToggleBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
-
     if (document.body.classList.contains("dark-mode")) {
         themeToggleBtn.textContent = "☀️ Light mode";
     } else {
@@ -92,17 +79,36 @@ themeToggleBtn.addEventListener("click", () => {
     }
 });
 
-
-const inputText = document.getElementById("inputText");
+// ======== GLOBAL WORD COUNTER ========
 const wordCountEl = document.getElementById("wordCount");
 
-function updateWordCount() {
-    const text = inputText.value.trim();
-    const words = text === "" ? 0 : text.split(/\s+/).length;
-    wordCountEl.textContent = `Transliterated word count: ${words}`;
+function countWords(text) {
+    const trimmed = text.trim();
+    return trimmed === "" ? 0 : trimmed.split(/\s+/).length;
 }
 
-inputText.addEventListener("input", updateWordCount);
+async function addToGlobalCount(words) {
+    const webAppURL = "https://script.google.com/macros/s/AKfycbzpGWOr8AyxowN9XP0cC14L1-6rrVChIZJf2SJpelOD90NVqs0j9M_FrWnzMe_BMEyZ/exec";
+    try {
+        const response = await fetch(`${webAppURL}?count=${words}`, { method: "POST" });
+        const data = await response.json();
+        wordCountEl.textContent = `Transliterated word count: ${data.total}`;
+    } catch (err) {
+        console.error("Error updating global word count:", err);
+    }
+}
+
+// ======== BUTTON CLICK ========
+document.getElementById("convertBtn").addEventListener("click", () => {
+    const input = document.getElementById("inputText").value;
+
+    // Transliterate text
+    document.getElementById("outputText").value = transliterate(input);
+
+    // Count words and update global count
+    const words = countWords(input);
+    addToGlobalCount(words);
+});
 
 
 

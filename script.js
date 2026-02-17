@@ -1,4 +1,61 @@
 // ============================
+// TRANSLATIONS
+// ============================
+const translations = {
+  en: {
+    siteSubtitle: "Converts Kazakh Cyrillic text into Latin script (Johanson-based)",
+    mainTitle: "Turkological Transcription",
+    mainSubtitle: "Johanson-based Latin transcription",
+    labelInput: "Kazakh (Cyrillic)",
+    placeholder: "Example: Қазақстан Республикасы",
+    convertBtn: "Transliterate",
+    labelOutput: "Kazakh (Latin)",
+    footerText: "© 2026 Dilnaz Alzhanova. All rights reserved.",
+    feedbackText: "Send your feedback here:"
+  },
+  kz: {
+    siteSubtitle: "Қазақ тіліндегі кирилл жазуын латын графикасына көшіреді (Йохансон жүйесі)",
+    mainTitle: "Түркологиялық транскрипция",
+    mainSubtitle: "Йохансон негізіндегі латын транскрипциясы",
+    labelInput: "Қазақша (кирилл)",
+    placeholder: "Мысалы: Қазақстан Республикасы",
+    convertBtn: "Транслитерациялау",
+    labelOutput: "Қазақша (латын)",
+    footerText: "© 2026 Дильназ Алжанова. Барлық құқықтар қорғалған.",
+    feedbackText: "Пікіріңізді осы жерге қалдырыңыз:"
+  },
+  ru: {
+    siteSubtitle: "Преобразует казахский текст с кириллицы на латиницу (система Йохансона)",
+    mainTitle: "Тюркологическая транскрипция",
+    mainSubtitle: "Латинская транскрипция по системе Йохансона",
+    labelInput: "Казахский (кириллица)",
+    placeholder: "Например: Қазақстан Республикасы",
+    convertBtn: "Транслитерировать",
+    labelOutput: "Казахский (латиница)",
+    footerText: "© 2026 Дильназ Альжанова. Все права защищены.",
+    feedbackText: "Оставьте свой отзыв здесь:"
+  }
+};
+
+// ============================
+// LANGUAGE SWITCHING
+// ============================
+function setLang(lang) {
+  document.getElementById("siteSubtitle").textContent = translations[lang].siteSubtitle;
+  document.getElementById("mainTitle").textContent = translations[lang].mainTitle;
+  document.getElementById("mainSubtitle").textContent = translations[lang].mainSubtitle;
+  document.getElementById("labelInput").textContent = translations[lang].labelInput;
+  document.getElementById("inputText").placeholder = translations[lang].placeholder;
+  document.getElementById("convertBtn").textContent = translations[lang].convertBtn;
+  document.getElementById("labelOutput").textContent = translations[lang].labelOutput;
+  document.getElementById("footerText").textContent = translations[lang].footerText;
+  document.getElementById("feedbackText").textContent = translations[lang].feedbackText;
+}
+
+// default language
+setLang("en");
+
+// ============================
 // GLOBAL VARIABLES
 // ============================
 const inputText = document.getElementById("inputText");
@@ -55,9 +112,7 @@ async function addToGlobalCount(words) {
   }
 }
 
-// ============================
-// INITIALIZE
-// ============================
+// Initial fetch
 fetchTotal();
 
 // Transliterate button click
@@ -69,11 +124,11 @@ document.getElementById("convertBtn").addEventListener("click", () => {
 
   // Count words and update global counter
   const words = countWords(input);
-  if (words > 0) addToGlobalCount(words);
+  if(words > 0) addToGlobalCount(words);
 });
 
 // ============================
-// DARK MODE
+// DARK MODE TOGGLE
 // ============================
 const themeToggleBtn = document.getElementById("theme-toggle");
 themeToggleBtn.addEventListener("click", () => {

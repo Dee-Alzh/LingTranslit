@@ -7,12 +7,11 @@
     width: 100% !important;
 }
 
-
 .lang-switcher button {
-  margin: 5px;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 14px;
+    margin: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 /* =====================================
@@ -34,47 +33,52 @@ body::before {
     opacity: 0.9;
 }
 
-//COUNT
+/* ============================
+   WORD COUNTER
+============================ */
+
 #wordCount {
     font-weight: 600;
-    color: white;        /* always white */
-    text-align: left;    /* move text to left */
-    margin: 0;           /* remove any auto margins */
+    color: white;       /* always white */
+    text-align: left;   /* move text to left */
+    margin: 0;
+    padding-left: 5px;  /* optional small indent */
 }
 
+/* =====================================
+   DARK MODE STYLES
+===================================== */
 
-
-/* DARK MODE STYLES */
 body.dark-mode {
-    background: #121212; /* dark background */
-    color: #ffffff; /* default font color */
+    background: #121212;
+    color: #ffffff;
 }
 
 body.dark-mode .custom-header {
-    color: #ffffff; /* header text white */
+    color: #ffffff;
 }
 
 body.dark-mode .translator-card {
-    background: #1e1e1e; /* dark card */
+    background: #1e1e1e;
     box-shadow: 0 35px 80px rgba(0,0,0,0.5);
-    color: #ffffff; /* ensure text inside card is white */
+    color: #ffffff;
 }
 
 body.dark-mode .translator-card h2,
 body.dark-mode .translator-card .subtitle,
 body.dark-mode .translator-card label {
-    color: #ffffff; /* headings, subtitles, labels white */
+    color: #ffffff;
 }
 
 body.dark-mode textarea {
     background: #2c2c2c;
-    color: #ffffff; /* text typed by user becomes white */
+    color: #ffffff;
     border: 1px solid #444;
 }
 
 body.dark-mode .translate-btn {
     background: #3b7a57;
-    color: #ffffff; /* button text white */
+    color: #ffffff;
 }
 
 body.dark-mode .translate-btn:hover {
@@ -82,10 +86,9 @@ body.dark-mode .translate-btn:hover {
 }
 
 body.dark-mode .site-footer {
-    color: #ffffff; /* footer text white */
+    color: #ffffff;
 }
 
-/* Optional: ensure all buttons inside lang-switcher are visible */
 body.dark-mode .lang-switcher button {
     background: #2c2c2c;
     color: #ffffff;
@@ -98,30 +101,30 @@ body.dark-mode #theme-toggle {
     border: 1px solid #444;
 }
 
+/* =====================================
+   DARK MODE TOGGLE BUTTON
+===================================== */
 
-/* DARK MODE TOGGLE BUTTON STYLING */
 #theme-toggle {
-    position: absolute; /* instead of fixed */
+    position: absolute;
     top: 20px;
     right: 20px;
     padding: 10px 20px;
     border-radius: 25px;
     border: none;
-    background: #2e6f4e; /* greenish color */
+    background: #2e6f4e;
     color: white;
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: background 0.3s ease; /* smooth color transition */
-    z-index: 100; /* above other content in wrapper */
+    transition: background 0.3s ease;
+    z-index: 100;
 }
 
-/* Hover effect: only color change */
 #theme-toggle:hover {
     background: #24563c;
 }
 
-/* Dark mode button style */
 body.dark-mode #theme-toggle {
     background: #444;
     color: #fff;
@@ -130,8 +133,6 @@ body.dark-mode #theme-toggle {
 body.dark-mode #theme-toggle:hover {
     background: #666;
 }
-
-
 
 /* =====================================
    HEADER
@@ -164,8 +165,6 @@ body.dark-mode #theme-toggle:hover {
     opacity: 0.9;
 }
 
-
-
 /* =====================================
    TRANSLATOR SECTION
 ===================================== */
@@ -186,7 +185,6 @@ body.dark-mode #theme-toggle:hover {
 }
 
 /* Titles */
-
 .translator-card h2 {
     color: #1e3c2f;
     margin-bottom: 0.4em;
@@ -198,7 +196,6 @@ body.dark-mode #theme-toggle:hover {
 }
 
 /* Fields */
-
 .field {
     margin-bottom: 2em;
 }
@@ -228,7 +225,6 @@ textarea:focus {
 }
 
 /* Button */
-
 .translate-btn {
     width: 100%;
     padding: 1em;
@@ -252,16 +248,17 @@ textarea:focus {
 ===================================== */
 
 .site-footer {
-    text-align: left;
+    text-align: left;      /* align all text left */
     font-size: 0.85em;
     opacity: 0.8;
     color: white;
-    padding-bottom: 2em;
+    padding: 2em;
 }
 
-.site-footer {
-    position: relative;
-    left: 20px;  /* moves it 20px to the right */
-    /* or */
-    right: 20px; /* moves it 20px to the left */
+#wordCount {
+    font-weight: 600;
+    color: white;
+    text-align: left;
+    margin: 0;
+    padding-left: 5px; /* optional small indent */
 }

@@ -35,16 +35,6 @@ body::before {
 }
 
 
-/count/
-.counter {
-  margin-top: 8px;
-  font-size: 14px;
-  color: #666;
-}
-.counter {
-  color: #ccc;
-}
-
 
 /* DARK MODE STYLES */
 body.dark-mode {

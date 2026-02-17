@@ -35,24 +35,20 @@ body::before {
 }
 
 //COUNT
-
 .word-counter {
-    text-align: right;        /* aligns text to the right */
     font-size: 0.95em;
-    color: #ffffff;           /* normal mode color */
-    margin: 0.5em 1em 2em 1em;
     font-weight: 600;
+    color: #1e3c2f;      /* normal mode: dark green text */
+    margin: 0.5em 0 2em 0; /* top/bottom spacing */
+    text-align: right;     /* right-align text */
+    width: 1100px;         /* match the translator card width */
+    max-width: 95%;        /* responsive for smaller screens */
+    margin-left: auto;      /* push to the right edge of card */
+    margin-right: auto;
 }
 
-/* Move it further to the right and white in dark mode */
 body.dark-mode .word-counter {
-    color: #ffffff;           /* white in dark mode */
-}
-
-body .word-counter {
-    /* optional: push it more to the right */
-    text-align: right;
-    margin-right: 2em;        /* increases distance from left edge */
+    color: #ffffff;       /* white in dark mode */
 }
 
 

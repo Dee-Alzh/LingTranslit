@@ -94,41 +94,57 @@ function countWords(text) {
   return trimmed === "" ? 0 : trimmed.split(/\s+/).length;
 }
 
-const webAppURL = "https://script.google.com/macros/s/AKfycbzpGWOr8AyxowN9XP0cC14L1-6rrVChIZJf2SJpelOD90NVqs0j9M_FrWnzMe_BMEyZ/exec";
+// ---------------------------
+// Global word counter
+// ---------------------------
 
+// ---------------------------
+// Global word counter
+// ---------------------------
+
+const wordCountEl = document.getElementById("wordCount"); // footer element
+const webAppURL = "https://script.google.com/macros/s/AKfycby75Ow5nN0ocO3kW2F96RWVkX183Vu8Chg-P61L0zTjvasEH45EOz7nFqihVoq4Tof-/exec";
+
+// Count words in a string
+function countWords(text) {
+    const trimmed = text.trim();
+    return trimmed === "" ? 0 : trimmed.split(/\s+/).length;
+}
+
+// Fetch current total words on page load
 async function fetchTotal() {
-  try {
-    const response = await fetch(webAppURL);
-    const data = await response.json();
-    wordCountEl.textContent = `Transliterated word count: ${data.total}`;
-  } catch (err) {
-    console.error("Error fetching total:", err);
-  }
+    try {
+        const response = await fetch(webAppURL);
+        const data = await response.json();
+        wordCountEl.textContent = `Transliterated word count: ${data.total}`;
+    } catch (err) {
+        console.error("Error fetching total:", err);
+    }
 }
 
+// Add new words to global total
 async function addToGlobalCount(words) {
-  try {
-    const response = await fetch(`${webAppURL}?count=${words}`, { method: "POST" });
-    const data = await response.json();
-    wordCountEl.textContent = `Transliterated word count: ${data.total}`;
-  } catch (err) {
-    console.error("Error updating global word count:", err);
-  }
+    try {
+        const response = await fetch(`${webAppURL}?count=${words}`, { method: "POST" });
+        const data = await response.json();
+        wordCountEl.textContent = `Transliterated word count: ${data.total}`;
+    } catch (err) {
+        console.error("Error updating total:", err);
+    }
 }
 
-// Load current total on page load
+// Update total on page load
 fetchTotal();
 
-// ============================
-// TRANSLITERATE BUTTON
-// ============================
+// When transliterate button clicked
 document.getElementById("convertBtn").addEventListener("click", () => {
-  const input = inputText.value;
-  document.getElementById("outputText").value = transliterate(input);
+    const input = document.getElementById("inputText").value;
 
-  const words = countWords(input);
-  addToGlobalCount(words);
+    // Transliterate (use your existing transliterate function)
+    document.getElementById("outputText").value = transliterate(input);
+
+    // Count words and send to Sheet
+    const words = countWords(input);
+    if(words > 0) addToGlobalCount(words);
 });
-
-
 

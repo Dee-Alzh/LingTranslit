@@ -1,4 +1,6 @@
-// ======== TRANSLATIONS ========
+// ============================
+// TRANSLATIONS
+// ============================
 const translations = {
   en: {
     siteSubtitle: "Converts Kazakh Cyrillic text into Latin script (Johanson-based)",
@@ -47,67 +49,85 @@ function setLang(lang) {
   document.getElementById("feedbackText").textContent = translations[lang].feedbackText;
 }
 
-// default language
+// Set default language
 setLang("en");
 
-// ======== TRANSLITERATION MAP ========
+// ============================
+// TRANSLITERATION MAP
+// ============================
 const map = {
-    "А":"A","а":"a","Ә":"Ä","ә":"ä","Б":"B","б":"b","В":"V","в":"v",
-    "Г":"G","г":"g","Ғ":"Ğ","ғ":"γ","Д":"D","д":"d","Е":"E","е":"e",
-    "Ж":"Ž","ж":"ž","З":"Z","з":"z","И":"Ị","и":"ị","Й":"Y","й":"y",
-    "К":"K","к":"k","Қ":"Q","қ":"q","Л":"L","л":"l","М":"M","м":"m",
-    "Н":"N","н":"n","Ң":"Ŋ","ң":"ŋ","О":"O","о":"o","Ө":"Ö","ө":"ö",
-    "П":"P","п":"p","Р":"R","р":"r","С":"S","с":"s","Т":"T","т":"t",
-    "У":"U","у":"u","Ұ":"U","ұ":"u","Ү":"Ü","ү":"ü","Ф":"F","ф":"f",
-    "Х":"Χ","х":"χ","Һ":"H","һ":"h","Ц":"C","ц":"c","Ч":"Č","ч":"č",
-    "Ш":"Š","ш":"š","Щ":"Sh","щ":"sh","Ы":"Ï","ы":"ï","І":"I","і":"i",
-    "Э":"E","э":"e","Ю":"Yu","ю":"yu","Я":"Ya","я":"ya","Ь":"'","ь":"'"
+  "А":"A","а":"a","Ә":"Ä","ә":"ä","Б":"B","б":"b","В":"V","в":"v",
+  "Г":"G","г":"g","Ғ":"Ğ","ғ":"γ","Д":"D","д":"d","Е":"E","е":"e",
+  "Ж":"Ž","ж":"ž","З":"Z","з":"z","И":"Ị","и":"ị","Й":"Y","й":"y",
+  "К":"K","к":"k","Қ":"Q","қ":"q","Л":"L","л":"l","М":"M","м":"m",
+  "Н":"N","н":"n","Ң":"Ŋ","ң":"ŋ","О":"O","о":"o","Ө":"Ö","ө":"ö",
+  "П":"P","п":"p","Р":"R","р":"r","С":"S","с":"s","Т":"T","т":"t",
+  "У":"U","у":"u","Ұ":"U","ұ":"u","Ү":"Ü","ү":"ü","Ф":"F","ф":"f",
+  "Х":"Χ","х":"χ","Һ":"H","һ":"h","Ц":"C","ц":"c","Ч":"Č","ч":"č",
+  "Ш":"Š","ш":"š","Щ":"Sh","щ":"sh","Ы":"Ï","ы":"ï","І":"I","і":"i",
+  "Э":"E","э":"e","Ю":"Yu","ю":"yu","Я":"Ya","я":"ya","Ь":"'","ь":"'"
 };
 
 function transliterate(text) {
-    return text.split("").map(c => map[c] ?? c).join("");
+  return text.split("").map(c => map[c] ?? c).join("");
 }
 
-// ======== DARK MODE TOGGLE ========
+// ============================
+// DARK MODE TOGGLE
+// ============================
 const themeToggleBtn = document.getElementById("theme-toggle");
 themeToggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    if (document.body.classList.contains("dark-mode")) {
-        themeToggleBtn.textContent = "☀️ Light mode";
-    } else {
-        themeToggleBtn.textContent = "🌙 Dark mode";
-    }
+  document.body.classList.toggle("dark-mode");
+  themeToggleBtn.textContent = document.body.classList.contains("dark-mode")
+      ? "☀️ Light mode"
+      : "🌙 Dark mode";
 });
 
-// ======== GLOBAL WORD COUNTER ========
-const wordCountEl = document.getElementById("wordCount");
+// ============================
+// WORD COUNTER
+// ============================
+const inputText = document.getElementById("inputText");
+const wordCountEl = document.getElementById("wordCount"); // footer element
 
 function countWords(text) {
-    const trimmed = text.trim();
-    return trimmed === "" ? 0 : trimmed.split(/\s+/).length;
+  const trimmed = text.trim();
+  return trimmed === "" ? 0 : trimmed.split(/\s+/).length;
+}
+
+const webAppURL = "https://script.google.com/macros/s/AKfycbzpGWOr8AyxowN9XP0cC14L1-6rrVChIZJf2SJpelOD90NVqs0j9M_FrWnzMe_BMEyZ/exec";
+
+async function fetchTotal() {
+  try {
+    const response = await fetch(webAppURL);
+    const data = await response.json();
+    wordCountEl.textContent = `Transliterated word count: ${data.total}`;
+  } catch (err) {
+    console.error("Error fetching total:", err);
+  }
 }
 
 async function addToGlobalCount(words) {
-    const webAppURL = "https://script.google.com/macros/s/AKfycbzpGWOr8AyxowN9XP0cC14L1-6rrVChIZJf2SJpelOD90NVqs0j9M_FrWnzMe_BMEyZ/exec";
-    try {
-        const response = await fetch(`${webAppURL}?count=${words}`, { method: "POST" });
-        const data = await response.json();
-        wordCountEl.textContent = `Transliterated word count: ${data.total}`;
-    } catch (err) {
-        console.error("Error updating global word count:", err);
-    }
+  try {
+    const response = await fetch(`${webAppURL}?count=${words}`, { method: "POST" });
+    const data = await response.json();
+    wordCountEl.textContent = `Transliterated word count: ${data.total}`;
+  } catch (err) {
+    console.error("Error updating global word count:", err);
+  }
 }
 
-// ======== BUTTON CLICK ========
+// Load current total on page load
+fetchTotal();
+
+// ============================
+// TRANSLITERATE BUTTON
+// ============================
 document.getElementById("convertBtn").addEventListener("click", () => {
-    const input = document.getElementById("inputText").value;
+  const input = inputText.value;
+  document.getElementById("outputText").value = transliterate(input);
 
-    // Transliterate text
-    document.getElementById("outputText").value = transliterate(input);
-
-    // Count words and update global count
-    const words = countWords(input);
-    addToGlobalCount(words);
+  const words = countWords(input);
+  addToGlobalCount(words);
 });
 
 

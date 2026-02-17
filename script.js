@@ -1,11 +1,8 @@
-// ============================
-// Wait for DOM to load
-// ============================
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ============================
+  // -------------------------------
   // TRANSLATIONS
-  // ============================
+  // -------------------------------
   const translations = {
     en: {
       siteSubtitle: "Converts Kazakh Cyrillic text into Latin script (Johanson-based)",
@@ -54,12 +51,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("feedbackText").textContent = translations[lang].feedbackText;
   }
 
-  // Set default language
+  // default language
   setLang("en");
 
-  // ============================
+  // -------------------------------
   // TRANSLITERATION MAP
-  // ============================
+  // -------------------------------
   const map = {
     "А":"A","а":"a","Ә":"Ä","ә":"ä","Б":"B","б":"b","В":"V","в":"v",
     "Г":"G","г":"g","Ғ":"Ğ","ғ":"γ","Д":"D","д":"d","Е":"E","е":"e",
@@ -77,21 +74,21 @@ document.addEventListener("DOMContentLoaded", () => {
     return text.split("").map(c => map[c] ?? c).join("");
   }
 
-  // ============================
-  // DARK MODE TOGGLE
-  // ============================
+  // -------------------------------
+  // DARK MODE
+  // -------------------------------
   const themeToggleBtn = document.getElementById("theme-toggle");
   themeToggleBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     themeToggleBtn.textContent = document.body.classList.contains("dark-mode")
-        ? "☀️ Light mode"
-        : "🌙 Dark mode";
+      ? "☀️ Light mode"
+      : "🌙 Dark mode";
   });
 
-  // ============================
+  // -------------------------------
   // GLOBAL WORD COUNTER
-  // ============================
-  const inputText = document.getElementById("inputText");
+  // -------------------------------
+  const inputEl = document.getElementById("inputText");
   const wordCountEl = document.getElementById("wordCount");
   const webAppURL = "https://script.google.com/macros/s/AKfycby75Ow5nN0ocO3kW2F96RWVkX183Vu8Chg-P61L0zTjvasEH45EOz7nFqihVoq4Tof-/exec";
 
@@ -100,45 +97,39 @@ document.addEventListener("DOMContentLoaded", () => {
     return trimmed === "" ? 0 : trimmed.split(/\s+/).length;
   }
 
-  // Fetch total words on page load
   async function fetchTotal() {
     try {
-      const response = await fetch(webAppURL);
-      const data = await response.json();
+      const res = await fetch(webAppURL);
+      const data = await res.json();
       wordCountEl.textContent = `Transliterated word count: ${data.total}`;
+      wordCountEl.style.display = "block"; // ensure visible
     } catch (err) {
-      console.error("Error fetching total:", err);
-      wordCountEl.textContent = `Transliterated word count: -`;
+      console.error(err);
+      wordCountEl.textContent = "Transliterated word count: -";
     }
   }
 
-  // Add words to global total
   async function addToGlobalCount(words) {
+    if(words <= 0) return;
     try {
-      const response = await fetch(`${webAppURL}?count=${words}`, { method: "POST" });
-      const data = await response.json();
+      const res = await fetch(`${webAppURL}?count=${words}`, { method: "POST" });
+      const data = await res.json();
       wordCountEl.textContent = `Transliterated word count: ${data.total}`;
     } catch (err) {
-      console.error("Error updating total:", err);
+      console.error(err);
     }
   }
 
-  // Initial fetch
+  // Fetch total on page load
   fetchTotal();
 
-  // ============================
-  // TRANSLITERATE BUTTON CLICK
-  // ============================
+  // -------------------------------
+  // TRANSLITERATE BUTTON
+  // -------------------------------
   document.getElementById("convertBtn").addEventListener("click", () => {
-    const input = inputText.value;
-    const words = countWords(input);
-
-    // Transliterate text
+    const input = inputEl.value;
     document.getElementById("outputText").value = transliterate(input);
-
-    // Send words to global counter
-    if(words > 0) addToGlobalCount(words);
+    addToGlobalCount(countWords(input));
   });
 
 });
-
